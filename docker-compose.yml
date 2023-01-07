@@ -1,0 +1,23 @@
+version: '3'
+services:
+  metabase:
+      volumes:
+      - ./metabase-data/metabase.db:/metabase.db
+      - ./hugo/test_data.db:/test_data.db
+      extra_hosts:
+      - "host.docker.internal:host-gateway"
+        # # setup your SQLITE db (optional)
+      #   - /PATH/TO/SQLITE/:/metabase
+      #   - ./metabase-data:/metabase-data
+      # environment:
+      #   - MB_DB_FILE=/metabase-data/metabase.db
+      #   - MB_DB_TYPE=postgres
+      #   - MB_DB_DBNAME=DATABASE
+      #   - MB_DB_PORT=5432
+      #   - MB_DB_USER=USERNAME
+      #   - MB_DB_PASS=PASWORD
+      #   - MB_DB_HOST=db
+      ports:
+        - 3001:3000
+      image: metabase/metabase
+      restart: always
